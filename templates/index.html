@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Planner</title>
+</head>
+<body>
+    <h1>Nutrition and Workout Planner</h1>
+    <form method="POST">
+        <!-- Collect basic user info -->
+        <label for="age">Age:</label>
+        <input type="number" name="age" required><br>
+
+        <label for="weight">Weight (kg):</label>
+        <input type="number" name="weight" required><br>
+
+        <label for="gender">Gender:</label>
+        <select name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+
+        <label for="height">Height (cm):</label>
+        <input type="number" name="height" required><br>
+
+        <label for="activity">Activity Level:</label>
+        <select name="activity" required>
+            <option value="none">None</option>
+            <option value="little">Little</option>
+            <option value="moderate">Moderate (3-5 Days/Week)</option>
+            <option value="very active">Very Active (5-6 Days/Week)</option>
+            <option value="extra active">Extra Active</option>
+        </select><br>
+
+        <!-- Health conditions (checkboxes) -->
+        <label for="conditions">Health Conditions:</label><br>
+        {% for condition in health_conditions %}
+            <input type="checkbox" name="conditions" value="{{ condition }}">{{ condition }}<br>
+        {% endfor %}
+
+        <!-- Goals -->
+        <label for="goals">Gym Goal:</label>
+        <select name="goals" required>
+            <option value="bulking">Bulking</option>
+            <option value="cutting">Cutting</option>
+            <option value="maintaining">Maintaining</option>
+        </select><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if maintenace_Cal %}
+        <h3>Your Results:</h3>
+        <p>Maintenance Calories: {{ maintenace_Cal }}</p>
+        <p>Intake Calories: {{ intake_cal }}</p>
+        <p>Protein: {{ P }}g</p>
+        <p>Carbs: {{ C }}g</p>
+        <p>Fats: {{ F }}g</p>
+    {% endif %}
+</body>
+</html>
